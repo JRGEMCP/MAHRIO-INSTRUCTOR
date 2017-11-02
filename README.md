@@ -1,6 +1,8 @@
 # MAHRIO-INSTRUCTOR
 Instructor SPA
 
+Development version: **1.0.0** [![Build Status](https://travis-ci.org/JRGEMCP/MAHRIO-INSTRUCTOR.svg?branch=master)](https://travis-ci.org/JRGEMCP/MAHRIO-INSTRUCTOR)
+
 ## Get Started
 Download this repo using `git` and install its dependencies using `npm`.
 1. `git clone https://github.com/JRGEMCP/mahrio-instructor.git`
