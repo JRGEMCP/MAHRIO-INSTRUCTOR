@@ -1,9 +1,9 @@
-# ng2-starter-app
-Angular 2 Starter App (Webpack 2 / Babel, Bootstrap 4 CSS, Font Awesome 4 Icons)
+# MAHRIO-INSTRUCTOR
+Instructor SPA
 
-## Get Started 
+## Get Started
 Download this repo using `git` and install its dependencies using `npm`.
-1. `git clone https://github.com/ComputerEnchiladas/ng2-starter-app.git`
+1. `git clone https://github.com/JRGEMCP/mahrio-instructor.git`
 2. `npm install`
 ### Development
 Watch files for changes then automatically rebuild assets
