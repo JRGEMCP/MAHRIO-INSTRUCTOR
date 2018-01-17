@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderModule } from 'mahrio-header/src/header.module';
 
 import { AppRoutingModule } from './app.routing.js';
@@ -25,6 +25,7 @@ import { Components } from './components';
 
     HeaderModule,
 
+    NgbModule.forRoot(),
     // Put this one last to avoid the 404 route capturing all requests
     AppRoutingModule,
   ],
