@@ -7,7 +7,10 @@
                    class="list-group-item list-group-item-action flex-column align-items-start"
                    (click)="featureService.currentFeature = feature;" >
                     <div class="d-flex w-100 justify-content-between" [ngClass]="{'pl-4': isLoggedIn}">
-                        <h5 class="mb-1">{{feature.title}}</h5>
+                        <h5 class="mb-1">
+                            {{feature.title}}
+                            <small *ngIf="feature.published">(PUBLISHED)</small>
+                        </h5>
                         <small>{{feature.created | date: 'MM/dd/yyyy'}}</small>
                     </div>
                     <div [ngClass]="{'pl-4': isLoggedIn}">

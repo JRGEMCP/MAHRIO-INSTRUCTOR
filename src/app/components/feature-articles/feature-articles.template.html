@@ -1,0 +1,19 @@
+<h3>Edit Feature Articles</h3>
+
+<div class="mt-3 mb-3">
+    <div *ngFor="let article of feature.currentArticles">
+        <i class="fa fa-close pull-right" (click)="removeItem(article._id)"></i>
+        {{article.title}}
+    </div>
+</div>
+
+<ng-container *ngIf="articles">
+    <ng-template #rt let-r="result" let-t="term">
+        <span [innerHTML]="r.title"></span>
+    </ng-template>
+    <div class="input-group">
+        <input id="articles" type="text" placeholder="Enter Article Title"
+               [ngbTypeahead]="search" [resultTemplate]="rt" (selectItem)="selectItem($event)"
+               class="form-control" />
+    </div>
+</ng-container>

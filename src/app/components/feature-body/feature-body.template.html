@@ -1,0 +1,15 @@
+<h3>Edit Feature Content</h3>
+
+<section *ngFor="let item of feature.body; let i = index">
+    <i class="fa fa-close pull-right" (click)="removeBody(i)"></i>
+    {{item}}
+</section>
+<hr/>
+<div class="form-group">
+    <label for="content">Content</label>
+    <textarea class="form-control" id="content" rows="3" placeholder="Feature Content" [(ngModel)]="body">
+    </textarea>
+</div>
+<button class="btn btn-primary" (click)="updateBody();">
+    Update
+</button>

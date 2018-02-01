@@ -10,7 +10,7 @@ const Routes = [
   { path: '', component: HomePage},
   { path: 'features', component: ListMyFeaturesComponent},
   { path: 'features/new', component: CreateMyFeatureComponent},
-  { path: 'features/:id/edit', component: EditMyFeatureComponent},
+  { path: 'features/:id/:section', component: EditMyFeatureComponent},
   { path: '**', component: FourOhFourPage, pathMatch: 'full' }
 ];
 

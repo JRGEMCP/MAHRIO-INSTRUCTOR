@@ -1,0 +1,12 @@
+<h3>Edit Publishing</h3>
+<p>
+    Published: {{feature.published}}
+</p>
+
+<button class="btn btn-primary" *ngIf="feature.published" (click)="publish(0)">
+    Unpublish
+</button>
+
+<button class="btn btn-primary" *ngIf="!feature.published" (click)="publish(1)">
+    Publish
+</button>
