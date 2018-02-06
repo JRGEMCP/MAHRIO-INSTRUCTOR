@@ -20,7 +20,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
 
             <alert-status [type]="type" [msg]="msg" *ngIf="type && msg"></alert-status>
 
@@ -34,7 +34,8 @@
             </div>
 
             <div [ngbCollapse]="state !== 'body'">
-                <feature-body [feature]="feature" (callback)="callback($event)"></feature-body>
+                <feature-body *ngIf="articles.length" [feature]="feature" [articles]="articles"
+                              (callback)="callback($event)"></feature-body>
             </div>
 
             <div [ngbCollapse]="state !== 'publish'">

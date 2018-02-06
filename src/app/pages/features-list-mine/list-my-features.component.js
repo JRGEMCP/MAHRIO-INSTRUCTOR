@@ -22,7 +22,7 @@ export class ListMyFeaturesComponent {
 
   ngOnInit() {
     this._subs = this.featureService.token
-      .flatMap( token => this.featureService.list(null, true, token) )
+      .flatMap( token => this.featureService.list('all', true, token) )
       .catch( () => {
         //
       })

@@ -2,11 +2,28 @@
 
 <section *ngFor="let item of feature.body; let i = index">
     <i class="fa fa-close pull-right" (click)="removeBody(i)"></i>
-    {{item}}
+    <ng-container *ngIf="!item.type">
+        {{item.content}}
+    </ng-container>
+    <ng-container *ngIf="item.type">
+        ___link___article___{{item.content._id}}___inline___
+    </ng-container>
 </section>
 <hr/>
+<div class="row" *ngIf="unselectedArticles.length">
+    <div class="col-12">
+        <label>Link Inline Article</label>
+        <select [(ngModel)]="body" (change)="selectchange($event)">
+            <option></option>
+            <option *ngFor="let article of unselectedArticles" [ngValue]="article._id">
+                {{article.title}}
+            </option>
+        </select>
+    </div>
+</div>
+<hr/>
 <div class="form-group">
-    <label for="content">Content</label>
+    <label for="content">Custom Content</label>
     <textarea class="form-control" id="content" rows="3" placeholder="Feature Content" [(ngModel)]="body">
     </textarea>
 </div>

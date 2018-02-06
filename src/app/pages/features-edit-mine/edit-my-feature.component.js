@@ -55,10 +55,11 @@ export class EditMyFeatureComponent {
     this.articlesService.getPublished()
       .subscribe( res => {
         this.articles = res.articles;
-        let arr = Array.from( this.feature.articles );
-        this.feature.currentArticles = this.articles.filter( art => arr.indexOf( art._id) !== -1 );
+        let arrIds = Array.from( this.feature.articles );
+        this.feature.currentArticles = this.articles.filter( art => arrIds.indexOf( art._id) !== -1 );
       });
   }
+
   ngOnDestroy(){
     if(this._subs) {
       this._subs.unsubscribe();
@@ -68,10 +69,13 @@ export class EditMyFeatureComponent {
   callback(obj){
     this.type = obj.type;
     this.msg = obj.msg;
+    if( obj.type === 'body' ){
+      this.feature.body
+    }
     if( obj.articles ) {
       this.feature.articles = obj.articles;
-      let arr = Array.from( this.feature.articles );
-      this.feature.currentArticles = this.articles.filter( art => arr.indexOf( art._id) !== -1 );
+      let arrIds = Array.from( this.feature.articles );
+      this.feature.currentArticles = this.articles.filter( art => arrIds.indexOf( art._id) !== -1 );
     }
   }
 }

@@ -31,6 +31,7 @@ export class FeatureArticlesComponent {
     }
     if( changes.feature && changes.feature.currentValue ) {
       this.feature = changes.feature.currentValue;
+      console.log( this.feature.currentArticles );
     }
   }
 
@@ -59,7 +60,7 @@ export class FeatureArticlesComponent {
     });
   }
 
-  removeItem(id) {
+  removeItem(id) { debugger;
     let articles = this.feature.articles;
     articles.delete(id);
     this.featureService.put(this.feature.id, {articles: Array.from(articles)}, 'articles').then(res => {
