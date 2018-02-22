@@ -4,6 +4,8 @@ import { HomePage, FourOhFourPage,
   ListMyFeaturesComponent,
   CreateMyFeatureComponent,
   EditMyFeatureComponent,
+  ListMyProductsComponent,
+  ListMyCoursesComponent,
 } from './pages';
 
 const Routes = [
@@ -11,6 +13,8 @@ const Routes = [
   { path: 'features', component: ListMyFeaturesComponent},
   { path: 'features/new', component: CreateMyFeatureComponent},
   { path: 'features/:id/:section', component: EditMyFeatureComponent},
+  { path: 'products', component: ListMyFeaturesComponent},
+  { path: 'courses', component: ListMyFeaturesComponent},
   { path: '**', component: FourOhFourPage, pathMatch: 'full' }
 ];
 
