@@ -1,27 +1,27 @@
 <div class="container mt-3">
     <h1>List My Courses</h1>
-    <create-feature></create-feature>
+    <create-course></create-course>
     <div class="list-group">
-        <ng-container *ngFor="let feature of pagingService.page">
+        <ng-container *ngFor="let course of pagingService.page">
             <div style="position:relative;">
-                <a [routerLink]="[feature.id, 'edit']"
+                <a [routerLink]="[course.id, 'edit']"
                    class="list-group-item list-group-item-action flex-column align-items-start"
-                   (click)="featureService.currentFeature = feature;" >
+                   (click)="courseService.currentCourse = course;" >
                     <div class="d-flex w-100 justify-content-between" [ngClass]="{'pl-4': isLoggedIn}">
                         <h5 class="mb-1">
-                            {{feature.title}}
-                            <small *ngIf="feature.published">(PUBLISHED)</small>
+                            {{course.title}}
+                            <small *ngIf="course.state">({{course.state}})</small>
                         </h5>
-                        <small>{{feature.created | date: 'MM/dd/yyyy'}}</small>
+                        <small>{{course.created | date: 'MM/dd/yyyy'}}</small>
                     </div>
                     <div [ngClass]="{'pl-4': isLoggedIn}">
-                        <p class="mb-1">{{feature.deck}}</p>
+                        <p class="mb-1">{{course.deck}}</p>
                     </div>
-                    <div [ngClass]="{'pl-4': isLoggedIn}" *ngIf="feature.tags">
-                        <span *ngFor="let tag of feature.tags; let i = index" class="badge badge-default ml-1">
-                                {{tag}}
-                            </span>
-                    </div>
+                    <!--<div [ngClass]="{'pl-4': isLoggedIn}" *ngIf="course.tags">-->
+                        <!--<span *ngFor="let tag of feature.tags; let i = index" class="badge badge-default ml-1">-->
+                                <!--{{tag}}-->
+                            <!--</span>-->
+                    <!--</div>-->
                 </a>
             </div>
         </ng-container>

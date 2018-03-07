@@ -1,24 +1,28 @@
 <div class="container mt-3">
     <h1>List My Products</h1>
-    <create-feature></create-feature>
+    <div class="row bg-faded navbar">
+        <div class="container">
+            <a class="btn btn-primary pull-right" [routerLink]="['new']">Create Product</a>
+        </div>
+    </div>
     <div class="list-group">
-        <ng-container *ngFor="let feature of pagingService.page">
+        <ng-container *ngFor="let product of pagingService.page">
             <div style="position:relative;">
-                <a [routerLink]="[feature.id, 'edit']"
+                <a [routerLink]="[product.id]"
                    class="list-group-item list-group-item-action flex-column align-items-start"
-                   (click)="featureService.currentFeature = feature;" >
+                   (click)="productService.currentProduct = product;" >
                     <div class="d-flex w-100 justify-content-between" [ngClass]="{'pl-4': isLoggedIn}">
                         <h5 class="mb-1">
-                            {{feature.title}}
-                            <small *ngIf="feature.published">(PUBLISHED)</small>
+                            {{product.title}}
+                            <small *ngIf="product.state">({{product.state}})</small>
                         </h5>
-                        <small>{{feature.created | date: 'MM/dd/yyyy'}}</small>
+                        <small>{{product.created | date: 'MM/dd/yyyy'}}</small>
                     </div>
                     <div [ngClass]="{'pl-4': isLoggedIn}">
-                        <p class="mb-1">{{feature.deck}}</p>
+                        <p class="mb-1">{{product.deck}}</p>
                     </div>
-                    <div [ngClass]="{'pl-4': isLoggedIn}" *ngIf="feature.tags">
-                        <span *ngFor="let tag of feature.tags; let i = index" class="badge badge-default ml-1">
+                    <div [ngClass]="{'pl-4': isLoggedIn}" *ngIf="product.tags">
+                        <span *ngFor="let tag of product.tags; let i = index" class="badge badge-default ml-1">
                                 {{tag}}
                             </span>
                     </div>

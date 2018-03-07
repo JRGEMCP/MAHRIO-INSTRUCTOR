@@ -1,0 +1,91 @@
+<h3>Edit Course Modules</h3>
+<ngb-accordion [closeOthers]="true" activeIds="static-0" *ngIf="course.modules.length">
+    <ngb-panel id="static-{{i}}" *ngFor="let module of course.modules; let i = index">
+        <ng-template ngbPanelTitle>
+            <i class="fa pull-right" style="font-size: 24px;" (click)="removeModule(module.id)">&times;</i>
+            <h4>{{i+1}}: {{module.title}}</h4>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%;">
+                <h4 style="position:absolute;">Articles</h4>
+                <!--<button class="btn btn-primary" style="position: absolute;right: 0;">Advanced Search</button>-->
+                <ng-container *ngIf="articles">
+                    <ng-template #rt let-r="result" let-t="term">
+                        <span [innerHTML]="r.title"></span>
+                    </ng-template>
+                    <div class="input-group" style="width: 50%; margin: 0 auto;">
+                        <input id="articles" type="text" placeholder="Enter Tutorial Title"
+                               [ngbTypeahead]="search" [resultTemplate]="rt" (selectItem)="selectItem(module, 'articles', $event)"
+                               class="form-control" />
+                    </div>
+                </ng-container>
+            </div>
+            <div *ngIf="module.articles && module.articles.length">
+                <ul>
+                    <li *ngFor="let article of module.articles; let a = index; let l = last;">
+                        <i class="fa fa-arrow-up pull-left" *ngIf="a" (click)="bumpArticleUp(a, module, article)"></i>
+                        <i class="fa fa-arrow-down pull-left" *ngIf="!l"
+                           (click)="bumpArticleDown(a, module, article)"></i>
+                        <i class="fa fa-close pull-right" (click)="removeArticle(module, article.id)"></i>
+                        {{article.title}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%;">
+                <h4 style="position:absolute;">Features</h4>
+                <!--<button class="btn btn-primary" style="position: absolute;right: 0;">Advanced Search</button>-->
+                <ng-container *ngIf="features">
+                    <ng-template #rt let-r="result" let-t="term">
+                        <span [innerHTML]="r.title"></span>
+                    </ng-template>
+                    <div class="input-group" style="width: 50%; margin: 0 auto;">
+                        <input id="features" type="text" placeholder="Enter Feature Title"
+                               [ngbTypeahead]="searchFeature" [resultTemplate]="rt" (selectItem)="selectItem(module, 'features', $event)"
+                               class="form-control" />
+                    </div>
+                </ng-container>
+            </div>
+            <div *ngIf="module.features && module.features.length">
+                <ul>
+                    <li *ngFor="let feature of module.features; let a = index; let l = last;">
+                        <i class="fa fa-arrow-up pull-left" *ngIf="a" (click)="bumpFeatureUp(a, module, feature)"></i>
+                        <i class="fa fa-arrow-down pull-left" *ngIf="!l"
+                           (click)="bumpFeatureDown(a, module, feature  )"></i>
+                        <i class="fa fa-close pull-right" (click)="removeFeature(module, feature.id)"></i>
+                        {{feature.title}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+
+                <!-- Products -->
+                <ng-container *ngIf="products">
+                    <ng-template #rt let-r="result" let-t="term">
+                        <span [innerHTML]="r.title"></span>
+                    </ng-template>
+                    <div class="input-group">
+                        <input id="products" type="text" placeholder="Enter Product Title"
+                               [ngbTypeahead]="searchProduct" [resultTemplate]="rt" (selectItem)="selectItem(module.id, 'product', $event)"
+                               class="form-control" />
+                    </div>
+                </ng-container>
+                <!-- Quizes: Select and add to module content array -->
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
+<hr/>
+<form [formGroup]="module.form" class="form-inline">
+
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%; margin-left: 100px">
+        <div class="input-group-addon">Module {{course.modules.length + 1}}</div>
+        <input type="text" class="form-control"  placeholder="Title" formControlName="title">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" (click)="addModule();">Go!</button>
+        </span>
+    </div>
+    <h4 style="position:absolute;">Add</h4>
+</form>

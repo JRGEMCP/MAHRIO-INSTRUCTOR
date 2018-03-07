@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
-import { TopicService } from 'mahrio-header/src/services';
-import { Feature } from 'mahrio-header/src/models';
+import { CourseService } from 'mahrio-header/src/services';
+import { Course } from 'mahrio-header/src/models';
 
-import template from './create-my-feature.template.html';
+import template from './create-my-course.template.html';
 
 @Component({
   selector: 'create-my-course',
@@ -13,17 +13,17 @@ import template from './create-my-feature.template.html';
 
 export class CreateMyCourseComponent {
   static get parameters(){
-    return [Router, TopicService, FormBuilder];
+    return [Router, CourseService, FormBuilder];
   }
-  constructor( router, feature, formBuilder){
+  constructor( router, course, formBuilder){
     this.router = router;
-    this.featureService = feature;
-    this.feature = new Feature( formBuilder );
+    this.courseService = course;
+    this.course = new Course( formBuilder );
   }
   save(){
-    this.featureService.post(this.feature.payload).then( res => {
-      this.featureService.currentFeature = Feature.fromPayload( res.topic );
-      this.router.navigate(['/', 'features', res.topic._id, 'edit']);
+    this.courseService.post(this.course.payload).then( res => {
+      this.courseService.currentCourse = Course.fromPayload( res.course );
+      this.router.navigate(['/', 'courses', res.course._id, 'edit']);
     }, err => {
 
     });

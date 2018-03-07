@@ -1,0 +1,53 @@
+<heading-bar [title]="course.title"></heading-bar>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group pl-2">
+                <li>
+                    <a (click)="state = 'edit'; type = '';"
+                            [routerLink]="['/', 'courses', course.id, 'edit']">Edit Course Info</a>
+                </li>
+                <li>
+                    <a (click)="state = 'A'; type = '';"
+                       [routerLink]="['/', 'courses', course.id, 'A']">Edit Course Modules</a>
+                </li>
+                <li>
+                    <a (click)="state = 'B'; type = '';"
+                       [routerLink]="['/', 'courses', course.id, 'B']">B</a>
+                </li>
+                <li>
+                    <a (click)="state = 'C'; type = '';"
+                       [routerLink]="['/', 'courses', course.id, 'C']">Preview Course</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8" *ngIf="course">
+
+            <alert-status [type]="type" [msg]="msg" *ngIf="type && msg"></alert-status>
+
+            <div [ngbCollapse]="state != 'edit'">
+                Course Info
+                <course-info [course]="course" (callback)="callback($event)"></course-info>
+            </div>
+
+            <div [ngbCollapse]="state != 'A'">
+                Course Modules
+
+                <course-modules *ngIf="course.id" [course]="course" [articles]="articles" [features]="features"
+                                  (callback)="callback($event)"></course-modules>
+            </div>
+
+            <div [ngbCollapse]="state !== 'B'">
+                B
+                <!--<feature-body *ngIf="articles.length" [feature]="feature" [articles]="articles"-->
+                              <!--(callback)="callback($event)"></feature-body>-->
+            </div>
+
+            <div [ngbCollapse]="state !== 'C'">
+                C-me
+                <course-publish [course]="course" (callback)="callback($event)"></course-publish>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -62,7 +62,7 @@ export class FeatureBodyComponent {
         body: this.feature.body.filter( (val, i) => i !== index ).map(body => body.content._id ? '___link___article___'+body.content._id+'___inline___' : body.content)
       }, 'body')
       .then(res => {
-        if( toRemove.content && toRemove.content._id ) { debugger;
+        if( toRemove.content && toRemove.content._id ) {
           this.unselectedArticles.push(toRemove.content);
         }
         this.feature.body.splice(index, 1);

@@ -4,9 +4,9 @@
 
         </div>
         <div class="col-md-4">
-            <h3>Discover</h3>
+            <h3>Create Course</h3>
 
-            <form [formGroup]="feature.form">
+            <form [formGroup]="course.form">
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
@@ -23,7 +23,7 @@
             </form>
 
             <button class="btn btn-success"
-                    [disabled]="!feature.form.valid"
+                    [disabled]="!course.form.valid"
                     (click)="save()">Save</button>
         </div>
     </div>

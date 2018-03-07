@@ -5,7 +5,7 @@ import template from './list-my-courses.template.html';
 import style from './list-my-courses.style.scss';
 
 @Component({
-  selector: 'list-my-features',
+  selector: 'list-my-courses',
   template,
   styles: [style]
 })
@@ -17,7 +17,7 @@ export class ListMyCoursesComponent {
   constructor ( courseService, PaginationService ){
     this.courseService = courseService;
     this.pagingService = PaginationService;
-    this.features = [];
+    this.courses = [];
   }
 
   ngOnInit() {
@@ -27,10 +27,10 @@ export class ListMyCoursesComponent {
         //
       })
       .subscribe( res => {
-        res.topics.forEach( (feature, i) => {
-          this.features.push( Feature.fromPayload(feature) );
+        res.courses.forEach( (course, i) => {
+          this.courses.push( Course.fromPayload(course) );
         });
-        this.pagingService.items = this.features;
+        this.pagingService.items = this.courses;
         this.pagingService.setPage(0);
 
         this.loaded = true;

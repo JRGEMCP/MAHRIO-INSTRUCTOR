@@ -3,8 +3,11 @@ import { RouterModule } from '@angular/router';
 import { HomePage, FourOhFourPage,
   ListMyFeaturesComponent,
   CreateMyFeatureComponent,
+  CreateMyCourseComponent,
   EditMyFeatureComponent,
+  EditMyCourseComponent,
   ListMyProductsComponent,
+  UpdateMyProductsComponent,
   ListMyCoursesComponent,
 } from './pages';
 
@@ -13,8 +16,11 @@ const Routes = [
   { path: 'features', component: ListMyFeaturesComponent},
   { path: 'features/new', component: CreateMyFeatureComponent},
   { path: 'features/:id/:section', component: EditMyFeatureComponent},
-  { path: 'products', component: ListMyFeaturesComponent},
-  { path: 'courses', component: ListMyFeaturesComponent},
+  { path: 'products', component: ListMyProductsComponent},
+  { path: 'products/:id', component: UpdateMyProductsComponent},
+  { path: 'courses', component: ListMyCoursesComponent},
+  { path: 'courses/new', component: CreateMyCourseComponent},
+  { path: 'courses/:id/:section', component: EditMyCourseComponent},
   { path: '**', component: FourOhFourPage, pathMatch: 'full' }
 ];
 

@@ -1,36 +1,36 @@
 import { Component } from "@angular/core";
-import { CourseService, PaginationService } from 'mahrio-header/src/services';
-import { Course } from 'mahrio-header/src/models';
+import { CategoryService, PaginationService } from 'mahrio-header/src/services';
+import { Product } from 'mahrio-header/src/models';
 import template from './list-my-products.template.html';
 import style from './list-my-products.style.scss';
 
 @Component({
-  selector: 'list-my-features',
+  selector: 'list-my-products',
   template,
   styles: [style]
 })
 
 export class ListMyProductsComponent {
   static get parameters(){
-    return [CourseService, PaginationService];
+    return [CategoryService, PaginationService];
   }
-  constructor ( courseService, PaginationService ){
-    this.courseService = courseService;
+  constructor ( productService, PaginationService ){
+    this.productService = productService;
     this.pagingService = PaginationService;
-    this.features = [];
+    this.products = [];
   }
 
   ngOnInit() {
-    this._subs = this.courseService.token
-      .flatMap( token => this.courseService.list('all', true, token) )
+    this._subs = this.productService.token
+      .flatMap( token => this.productService.list('all', true, token) )
       .catch( () => {
         //
       })
       .subscribe( res => {
-        res.topics.forEach( (feature, i) => {
-          this.features.push( Feature.fromPayload(feature) );
+        res.categories.forEach( (product, i) => {
+          this.products.push( Product.fromPayload(product) );
         });
-        this.pagingService.items = this.features;
+        this.pagingService.items = this.products;
         this.pagingService.setPage(0);
 
         this.loaded = true;

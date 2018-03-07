@@ -60,7 +60,7 @@ export class FeatureArticlesComponent {
     });
   }
 
-  removeItem(id) { debugger;
+  removeItem(id) {
     let articles = this.feature.articles;
     articles.delete(id);
     this.featureService.put(this.feature.id, {articles: Array.from(articles)}, 'articles').then(res => {
