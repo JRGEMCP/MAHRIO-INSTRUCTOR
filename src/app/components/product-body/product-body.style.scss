@@ -1,0 +1,14 @@
+section {
+  position: relative;
+
+  .edit-controls {
+    position: absolute;
+    right: 5px;
+    top: 9px;
+  }
+}
+textarea {
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: 2em;
+}

@@ -1,5 +1,4 @@
 <div class="container mt-3">
-    <h1>List My Courses</h1>
     <create-course></create-course>
     <div class="list-group">
         <ng-container *ngFor="let course of pagingService.page">
@@ -10,7 +9,7 @@
                     <div class="d-flex w-100 justify-content-between" [ngClass]="{'pl-4': isLoggedIn}">
                         <h5 class="mb-1">
                             {{course.title}}
-                            <small *ngIf="course.state">({{course.state}})</small>
+                            <small *ngIf="course.published">(Published)</small>
                         </h5>
                         <small>{{course.created | date: 'MM/dd/yyyy'}}</small>
                     </div>

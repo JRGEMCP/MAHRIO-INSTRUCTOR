@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { CourseService, ModuleService } from 'mahrio-header/src/services';
 import { Module } from 'mahrio-header/src/models';
 import template from './course-modules.template.html';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 var articles = [];
 var features = [];
@@ -25,6 +27,14 @@ export class CourseModulesComponent {
     this.module = new Module(null, FormBuilder);
     this.formBuilder = FormBuilder;
     this.callback = new EventEmitter();
+    this.articleSelected;
+    this.featureSelected;
+    this.searchArticles = Observable.create((observer) => {
+      observer.next(this.articleSelected);
+    }).mergeMap((token) => this.getArticlesAsObservable(token));
+    this.searchFeatures = Observable.create((observer) => {
+      observer.next(this.featureSelected);
+    }).mergeMap((token) => this.getFeaturesAsObservable(token));
   }
   ngOnChanges(changes){
     if( changes.course && changes.course.currentValue ){
@@ -76,17 +86,24 @@ export class CourseModulesComponent {
     });
   }
 
-  search(text$) {
-    return text$
-      .debounceTime(200)
-      .map(term => term === '' ? []
-        : articles.filter(v => new RegExp(term, 'gi').test(v.title)).slice(0, 10));
+  getArticlesAsObservable(token) {
+    let query = new RegExp(token, 'ig');
+
+    return Observable.of(
+      articles.filter((state) => {
+        return query.test(state.title);
+      })
+    );
   }
-  searchFeature(text$) {
-    return text$
-      .debounceTime(200)
-      .map(term => term === '' ? []
-        : features.filter(v => new RegExp(term, 'gi').test(v.title)).slice(0, 10));
+
+  getFeaturesAsObservable(token) {
+    let query = new RegExp(token, 'ig');
+
+    return Observable.of(
+      features.filter((state) => {
+        return query.test(state.title);
+      })
+    );
   }
   selectItem(module, type, event) {
     const item = event.item;
@@ -115,8 +132,9 @@ export class CourseModulesComponent {
         item: item,
         moduleId: module.id
       });
-      document.getElementById('articles').value = '';
-      document.getElementById('features').value = '';
+      let art = document.getElementsByClassName('articles');
+      let fea = document.getElementsByClassName('features');
+      for(var y=0; y < art.length; y++){ art[y].value = ""; fea[y].value = "";  }
     });
   }
 

@@ -23,7 +23,7 @@ export class CreateMyCourseComponent {
   save(){
     this.courseService.post(this.course.payload).then( res => {
       this.courseService.currentCourse = Course.fromPayload( res.course );
-      this.router.navigate(['/', 'courses', res.course._id, 'edit']);
+      this.router.navigate(['/', 'instructor', 'courses', res.course._id, 'edit']);
     }, err => {
 
     });

@@ -9,7 +9,7 @@
                     <div class="d-flex w-100 justify-content-between" [ngClass]="{'pl-4': isLoggedIn}">
                         <h5 class="mb-1">
                             {{feature.title}}
-                            <small *ngIf="feature.state">{{feature.state}}</small>
+                            <small *ngIf="feature.published">(Published)</small>
                         </h5>
                         <small>{{feature.created | date: 'MM/dd/yyyy'}}</small>
                     </div>

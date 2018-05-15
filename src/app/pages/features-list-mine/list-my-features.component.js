@@ -39,4 +39,23 @@ export class ListMyFeaturesComponent {
   ngOnDestroy(){
 
   }
+  // PAGINATION
+  change($event){
+    switch($event.type){
+      case 'first':
+        this.pagingService.first();
+        break;
+      case 'prev':
+        this.pagingService.prev();
+        break;
+      case 'next':
+        this.pagingService.next();
+        break;
+      case 'last':
+        this.pagingService.last();
+        break;
+      case 'page':
+        this.pagingService.setPage( $event.num );
+    }
+  }
 }

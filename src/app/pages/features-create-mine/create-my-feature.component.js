@@ -23,7 +23,7 @@ export class CreateMyFeatureComponent {
   save(){
     this.featureService.post(this.feature.payload).then( res => {
       this.featureService.currentFeature = Feature.fromPayload( res.topic );
-      this.router.navigate(['/', 'features', res.topic._id, 'edit']);
+      this.router.navigate(['/', 'instructor', 'features', res.topic._id, 'edit']);
     }, err => {
 
     });

@@ -1,15 +1,31 @@
 <h3>Edit Feature Content</h3>
 
-<section *ngFor="let item of feature.body; let i = index">
-    <i class="fa fa-close pull-right" (click)="removeBody(i)"></i>
+<section *ngFor="let item of feature.body; let i = index; let l = last">
+    <div class="edit-controls">
+        <i class="fa fa-close pull-right" (click)="removeBody(i)"></i>
+        <i class="fa fa-edit pull-right" (click)="item.edit = 1" *ngIf="!item.edit"></i>
+        <i class="fa fa-check pull-right" (click)="save();item.edit = 0" *ngIf="item.edit"></i>
+        <i class="fa fa-arrow-up" (click)="moveUp(i)" *ngIf="item.edit && i"></i>
+        <i class="fa fa-arrow-down" (click)="moveDown(i)" *ngIf="item.edit && !l"></i>
+    </div>
     <ng-container *ngIf="!item.type">
-        {{item.content}}
+        <markdown [data]="item.content" class="fill-editor-preview" *ngIf="!item.edit"></markdown>
+        <tabset *ngIf="item.edit">
+            <tab heading="Markdown" id="tab1">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" placeholder="Feature Content" [(ngModel)]="item.content"></textarea>
+                </div>
+            </tab>
+            <tab heading="Preview">
+                <markdown [data]="item.content" class="fill-editor-preview"></markdown>
+            </tab>
+        </tabset>
     </ng-container>
     <ng-container *ngIf="item.type">
         ___link___article___{{item.content._id}}___inline___
     </ng-container>
 </section>
-<hr/>
+<hr *ngIf="unselectedArticles.length"/>
 <div class="row" *ngIf="unselectedArticles.length">
     <div class="col-12">
         <label>Link Inline Article</label>
@@ -23,9 +39,14 @@
 </div>
 <hr/>
 <div class="form-group">
-    <label for="content">Custom Content</label>
-    <textarea class="form-control" id="content" rows="3" placeholder="Feature Content" [(ngModel)]="body">
-    </textarea>
+    <tabset>
+        <tab heading="Markdown" id="tab1">
+            <textarea class="form-control" rows="3" placeholder="Feature Content" [(ngModel)]="body"></textarea>
+        </tab>
+        <tab heading="Preview">
+            <markdown [data]="body" class="fill-editor-preview"></markdown>
+        </tab>
+    </tabset>
 </div>
 <button class="btn btn-primary" (click)="updateBody();">
     Update

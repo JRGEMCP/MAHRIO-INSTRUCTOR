@@ -1,11 +1,12 @@
 import { Component, EventEmitter } from '@angular/core';
 import { TopicService } from 'mahrio-header/src/services';
 import template from './feature-body.template.html';
+import style from './feature-body.style.scss';
 
 @Component({
   selector: 'feature-body',
   template,
-  styles: [],
+  styles: [style],
   inputs: ['feature', 'articles'],
   outputs: ['callback']
 })
@@ -29,6 +30,34 @@ export class FeatureBodyComponent {
       }
     )
     this.unselectedArticles = this.feature.currentArticles.filter( art => usedIds.indexOf(art._id) === -1 );
+  }
+  save(){
+    let bodyPayload = this.feature.body.map(
+      body => body.content._id ? {type: 'article', content: '___link___article___'+body.content._id+'___inline___'} : body);
+
+    this.featureService.put(this.feature.id, {body: bodyPayload.map(body => body.content)}, 'body').then( res => {
+      this.callback.emit({
+        type: 'success',
+        msg: 'Feature content saved',
+        change: 'body',
+        value: bodyPayload
+      });
+    }, err => {
+      this.callback.emit({
+        type: 'danger',
+        msg: 'Unable to save content'
+      });
+    });
+  }
+  moveUp(i){
+    let body = this.feature.body.splice(i,1);
+    this.feature.body.splice(i-1, 0, body[0]);
+    this.save();
+  }
+  moveDown(i){
+    let body = this.feature.body.splice(i,1);
+    this.feature.body.splice(i+1, 0, body[0]);
+    this.save();
   }
   updateBody( preInsert ){
     let bodyPayload = this.feature.body.map(

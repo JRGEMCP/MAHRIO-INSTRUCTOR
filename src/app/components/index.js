@@ -8,6 +8,9 @@ import { FeatureBodyComponent } from './feature-body/feature-body.component';
 import { FeaturePublishComponent } from './feature-publish/feature-publish.component';
 import { FeatureInfoComponent } from './feature-info/feature-info.component';
 import { FeatureArticlesComponent } from './feature-articles/feature-articles.component';
+import { ProductBodyComponent } from './product-body/product-body.component';
+import { ProductFeaturesComponent } from './product-features/product-features.component';
+import { ProductPreviewComponent } from './product-preview/product-preview.component';
 
 export {
   TopNavComponent,
@@ -19,7 +22,10 @@ export {
   FeatureBodyComponent,
   FeaturePublishComponent,
   FeatureInfoComponent,
-  FeatureArticlesComponent
+  FeatureArticlesComponent,
+  ProductBodyComponent,
+  ProductPreviewComponent,
+  ProductFeaturesComponent
 };
 
 export const Components = [
@@ -32,5 +38,8 @@ export const Components = [
   FeatureBodyComponent,
   FeaturePublishComponent,
   FeatureInfoComponent,
-  FeatureArticlesComponent
+  FeatureArticlesComponent,
+  ProductBodyComponent,
+  ProductPreviewComponent,
+  ProductFeaturesComponent
 ];

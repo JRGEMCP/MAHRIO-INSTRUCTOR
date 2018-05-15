@@ -1,5 +1,4 @@
 <div class="container mt-3">
-    <h1>List My Products</h1>
     <div class="row bg-faded navbar">
         <div class="container">
             <a class="btn btn-primary pull-right" [routerLink]="['new']">Create Product</a>
@@ -14,7 +13,7 @@
                     <div class="d-flex w-100 justify-content-between" [ngClass]="{'pl-4': isLoggedIn}">
                         <h5 class="mb-1">
                             {{product.title}}
-                            <small *ngIf="product.state">({{product.state}})</small>
+                            <small *ngIf="product.published">(Published)</small>
                         </h5>
                         <small>{{product.created | date: 'MM/dd/yyyy'}}</small>
                     </div>

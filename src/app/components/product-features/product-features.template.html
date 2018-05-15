@@ -1,0 +1,19 @@
+<h3>Edit Product Features</h3>
+
+<div class="mt-3 mb-3">
+    <div *ngFor="let feature of product.currentFeatures">
+        <i class="fa fa-close pull-right" (click)="removeItem(feature._id)"></i>
+        {{feature.title}}
+    </div>
+</div>
+
+<ng-container *ngIf="features">
+    <ng-template #rt let-r="result" let-t="term">
+        <span [innerHTML]="r.title"></span>
+    </ng-template>
+    <div class="input-group">
+        <!--<input id="features" type="text" placeholder="Enter Feature Title"-->
+               <!--[ngbTypeahead]="search" [resultTemplate]="rt" (selectItem)="selectItem($event)"-->
+               <!--class="form-control" />-->
+    </div>
+</ng-container>

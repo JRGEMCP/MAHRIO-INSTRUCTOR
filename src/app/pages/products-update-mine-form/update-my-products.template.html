@@ -16,7 +16,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
             <alert-status [type]="type" [msg]="msg" *ngIf="type && msg"></alert-status>
 
             <h3>{{state == 'new' ? 'New' : 'Edit'}} Product</h3>
@@ -42,8 +42,17 @@
                         [disabled]="!product.form.valid"
                         (click)="state == 'new' ? save() : update()">{{state == 'new' ? 'Save' : 'Update'}}</button>
             </div>
+            <div *ngIf="state == 'topics'">
+                <product-features *ngIf="features.length" [product]="product" [features]="features"
+                                  (callback)="callback($event)"></product-features>
+
+            </div>
+            <div *ngIf="state == 'body'">
+                <product-body [product]="product" (callback)="callback($event)"></product-body>
+            </div>
             <div *ngIf="state == 'publish'">
-                <h3>Preview</h3>
+                <product-preview [product]="product"></product-preview>
+
             </div>
         </div>
     </div>

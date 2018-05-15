@@ -4,19 +4,19 @@
             <ul class="list-group pl-2">
                 <li>
                     <a (click)="state = 'edit'; type = '';"
-                            [routerLink]="['/', 'features', feature.id, 'edit']">Edit</a>
+                            [routerLink]="['/instructor', 'features', feature.id, 'edit']">Edit</a>
                 </li>
                 <li>
                     <a (click)="state = 'articles'; type = '';"
-                       [routerLink]="['/', 'features', feature.id, 'articles']">Articles</a>
+                       [routerLink]="['/instructor', 'features', feature.id, 'articles']">Articles</a>
                 </li>
                 <li>
                     <a (click)="state = 'body'; type = '';"
-                       [routerLink]="['/', 'features', feature.id, 'body']">Content</a>
+                       [routerLink]="['/instructor', 'features', feature.id, 'body']">Content</a>
                 </li>
                 <li>
                     <a (click)="state = 'publish'; type = '';"
-                       [routerLink]="['/', 'features', feature.id, 'publish']">Publish</a>
+                       [routerLink]="['/instructor', 'features', feature.id, 'publish']">Publish</a>
                 </li>
             </ul>
         </div>
@@ -24,21 +24,21 @@
 
             <alert-status [type]="type" [msg]="msg" *ngIf="type && msg"></alert-status>
 
-            <div [ngbCollapse]="state != 'edit'">
+            <div [collapse]="state != 'edit'">
                 <feature-info [feature]="feature" (callback)="callback($event)"></feature-info>
             </div>
 
-            <div [ngbCollapse]="state != 'articles'">
+            <div [collapse]="state != 'articles'">
                 <feature-articles *ngIf="articles.length" [feature]="feature" [articles]="articles"
                                   (callback)="callback($event)"></feature-articles>
             </div>
 
-            <div [ngbCollapse]="state !== 'body'">
+            <div [collapse]="state !== 'body'">
                 <feature-body *ngIf="articles.length" [feature]="feature" [articles]="articles"
                               (callback)="callback($event)"></feature-body>
             </div>
 
-            <div [ngbCollapse]="state !== 'publish'">
+            <div [collapse]="state !== 'publish'">
                 <feature-publish [feature]="feature" (callback)="callback($event)"></feature-publish>
             </div>
 
